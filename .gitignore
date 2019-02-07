@@ -1,4 +1,6 @@
 /3dModels/
-
 node_modules
 .idea
+.DS_Store
+venv/
+src/__pycache__
