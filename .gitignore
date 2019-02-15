@@ -4,3 +4,4 @@ node_modules
 .DS_Store
 venv/
 src/__pycache__
+package-lock.json
