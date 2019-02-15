@@ -1,4 +1,5 @@
 from util import scan_as_rect
+from util import find_horizontal_vertical_lengthes
 import numpy as np
 import argparse
 import cv2
@@ -13,8 +14,10 @@ image = cv2.imread(args["image"])
 warped = scan_as_rect(image)
 
 # show
-cv2.imshow("original", imutils.resize(image, height=650))
 cv2.imshow("scanned", imutils.resize(warped, height=650))
 cv2.waitKey(0)
 cv2.destroyAllWindows()
 
+
+# find vertical, horizontal lengthes
+find_horizontal_vertical_lengthes(warped)
