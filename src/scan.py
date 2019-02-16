@@ -19,5 +19,10 @@ cv2.waitKey(0)
 cv2.destroyAllWindows()
 
 
-# find vertical, horizontal lengthes
-find_horizontal_vertical_lengthes(warped)
+# find vertical, horizontal length
+hor_length, vertical_length, matric_per_pixel = find_horizontal_vertical_lengthes(warped)
+
+# output
+print("%f" % (vertical_length*matric_per_pixel))
+for h in hor_length:
+    print("%f %f %f" % (h[0]*matric_per_pixel, h[1]*matric_per_pixel, h[2]*matric_per_pixel))

@@ -110,9 +110,9 @@ def find_horizontal_vertical_lengthes(image) :
     now_y = foot[0][1]
     left = right = foot[0]
     lleft = lright = foot[0]
-    i = 1
     MIN_RECOG=10
     hor_lines = [[foot[0], foot[0]]]
+    i = 1
     while i < len(foot):
         if foot[i][1] != now_y:
             if math.fabs(left[0]-right[0]) > MIN_RECOG:
@@ -127,21 +127,21 @@ def find_horizontal_vertical_lengthes(image) :
 
     result = []
     for j in range(len(hor_lines)-1):
-        result.append(((hor_lines[j][0], hor_lines[j][1]), hor_lines[j][0][1]-top_y))
-        start_y = hor_lines[j][0][1]
+        result.append((hor_lines[j][0][0], hor_lines[j][1][0], hor_lines[j][0][1]-top_y))
+        start_y = hor_lines[j][0][1]-top_y
         length = hor_lines[j+1][0][1] - hor_lines[j][0][1]
         delta = ((hor_lines[j+1][0][0] - hor_lines[j][0][0])/length,
                  (hor_lines[j+1][1][0] - hor_lines[j][1][0])/length)
-        for k in range(length):
-            l = (int(hor_lines[j][0][0] + delta[0]*k), start_y+k)
-            r = (int(hor_lines[j][1][0] + delta[1]*k), start_y+k)
-            result.append(((l, r), start_y+k-top_y))
+        for k in range(1, length):
+            l = int(hor_lines[j][0][0] + delta[0]*k)
+            r = int(hor_lines[j][1][0] + delta[1]*k)
+            result.append((l, r, start_y+k))
 
     for line in result:
-        image = cv2.line(image, line[0][0], line[0][1], (0, 255, 0), 1)
+        image = cv2.line(image, (line[0], line[2]), (line[1], line[2]), (0, 255, 0), 1)
     cv2.imshow('image', image)
     cv2.waitKey(0)
     cv2.destroyAllWindows()
 
-    return (hor_lines, height_px)
+    return (result, height_px, matric_per_pixel)
 
