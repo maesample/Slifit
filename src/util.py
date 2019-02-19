@@ -3,6 +3,8 @@
 import numpy as np
 import cv2
 import imutils
+import math
+from skimage.filters import threshold_local
 
 def order_points(pts) :
     rect = np.zeros((4,2), dtype="float32")
@@ -56,25 +58,26 @@ def four_point_transform(image, pts):
 
 def scan_as_rect(image) :
     # calculate ratio
-    ratio = image.shape[0] / 500.0
+    ratio = image.shape[0] / 512.0
     orig = image.copy()
-    image = imutils.resize(image, height=500)
+    image = imutils.resize(image, height=512)
 
     # convert to grayscale, find edges
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
     gray = cv2.GaussianBlur(gray, (5, 5), 0)
+    # gray[gray < 170] = 30
     edged = cv2.Canny(gray, 75, 200)
 
     # find contours
     cnts = cv2.findContours(edged.copy(), cv2.RETR_LIST, cv2.CHAIN_APPROX_SIMPLE)
     cnts = imutils.grab_contours(cnts)
-    cnts = sorted(cnts, key=cv2.contourArea, reverse=True)[:5]
+    cnts = sorted(cnts, key=cv2.contourArea, reverse=True)[:10]
 
     screen_cnt = None
     for c in cnts:
         # approximate the contour
         peri = cv2.arcLength(c, True)
-        approx = cv2.approxPolyDP(c, 0.02 * peri, True)
+        approx = cv2.approxPolyDP(c, 0.01 * peri, True)
 
         # check contour has four points
         if len(approx) == 4:
@@ -82,3 +85,63 @@ def scan_as_rect(image) :
             break
 
     return four_point_transform(orig, screen_cnt.reshape(4, 2) * ratio)
+
+def find_horizontal_vertical_lengthes(image) :
+    PROCESSING_SIZE = 512.0
+    matric_per_pixel = 297.0/PROCESSING_SIZE
+    image = imutils.resize(image, height=int(PROCESSING_SIZE))
+    gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+    gray = cv2.GaussianBlur(gray, (5, 5), 0)
+    T = threshold_local(gray, 11, offset=10, method="gaussian")
+    gray = (gray > T).astype("uint8") * 255
+    edged = cv2.Canny(gray, 75, 200)
+
+    cnts = cv2.findContours(edged.copy(), cv2.RETR_LIST, cv2.CHAIN_APPROX_SIMPLE)
+    cnts = imutils.grab_contours(cnts)
+    cnts = sorted(cnts, key=cv2.contourArea, reverse=True)[:5]
+
+    foot = cnts[0]
+    foot = list(map(lambda x: (x[0][0], x[0][1]), foot))
+    foot = sorted(foot, key=lambda x: x[1], reverse=False)
+
+    height_px = foot[len(foot)-1][1] - foot[0][1]
+
+    top_y = foot[0][1]
+    now_y = foot[0][1]
+    left = right = foot[0]
+    lleft = lright = foot[0]
+    MIN_RECOG=10
+    hor_lines = [[foot[0], foot[0]]]
+    i = 1
+    while i < len(foot):
+        if foot[i][1] != now_y:
+            if math.fabs(left[0]-right[0]) > MIN_RECOG:
+                hor_lines.append([left, right])
+            now_y = foot[i][1]
+            left = right = foot[i]
+        elif foot[i][0] < left[0]:
+            left = foot[i]
+        elif foot[i][0] > right[0]:
+            right = foot[i]
+        i += 1
+
+    result = []
+    for j in range(len(hor_lines)-1):
+        result.append((hor_lines[j][0][0], hor_lines[j][1][0], hor_lines[j][0][1]-top_y))
+        start_y = hor_lines[j][0][1]-top_y
+        length = hor_lines[j+1][0][1] - hor_lines[j][0][1]
+        delta = ((hor_lines[j+1][0][0] - hor_lines[j][0][0])/length,
+                 (hor_lines[j+1][1][0] - hor_lines[j][1][0])/length)
+        for k in range(1, length):
+            l = int(hor_lines[j][0][0] + delta[0]*k)
+            r = int(hor_lines[j][1][0] + delta[1]*k)
+            result.append((l, r, start_y+k))
+
+    for line in result:
+        image = cv2.line(image, (line[0], line[2]), (line[1], line[2]), (0, 255, 0), 1)
+    cv2.imshow('image', image)
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
+
+    return (result, height_px, matric_per_pixel)
+
