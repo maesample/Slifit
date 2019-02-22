@@ -4,8 +4,14 @@ const multer = require('multer')
 const express = require('express')
 const app = express()
 
+app.use(express.static(path.resolve(__dirname, '../frontend/')))
+
 app.get('/', (req, res) => {
-    res.send('asdf')
+    res.sendFile(path.resolve(__dirname, '../frontend/index.html'))
+})
+
+app.get('/download/apk', (req, res) => {
+    res.download(path.resolve(__dirname, './slifit.apk'))
 })
 
 /* Create new image */
@@ -18,7 +24,7 @@ app.post('/upload/:filename', function(req, res, next) {
 });
 
 const upload = (req, res) => {
-    const deferred = Q.defer();
+    const  deferred = Q.defer();
     const storage = multer.diskStorage({
       // 서버에 저장할 폴더
       destination: (req, file, cb) => {

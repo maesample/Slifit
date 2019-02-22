@@ -44,9 +44,21 @@ def objSave(name, vertexList, vertexBeforeTxt, vertexAfterTxt):
 
 if __name__ == "__main__":
     vertexList, vertexBeforeTxt, vertexAfterTxt = objVertexExtract('../3dModels/rightSlipper.obj')
+    #
+    # for i in range(len(vertexList)):
+    #     # vertexList[i][0] *= 2.0
+    #     if i < (len(vertexList) / 2):
+    #         vertexList[i][0] *= 2.0
+    #     else:
+    #         vertexList[i][0] *= -2.0
+    #
+    # objSave('../3dModels/newObjhalf.obj', vertexList, vertexBeforeTxt, vertexAfterTxt)
+
+    i_min = 0
+    i_max = 0
 
     for i in range(len(vertexList)):
-        vertexList[i][0] *= 2.0
-
-    objSave('../3dModels/newObj.obj', vertexList, vertexBeforeTxt, vertexAfterTxt)
+        i_min = min(i_min, vertexList[i][2])
+        i_max = max(i_max, vertexList[i][2])
+    print "min " + str(i_min) + "| max " + str(i_max)
 

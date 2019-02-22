@@ -1,32 +1,63 @@
 <!DOCTYPE html>
-<html lang="kr">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src "> -->
-
-    <meta name="description" content="slifit">
-    <meta name="robots" content="index,follow,noodp">
-    <meta name="googlebot" content="index,follow">
-    <meta name="google" content="nositelinkssearchbox">
-    <meta name="google" content="notranslate">
-    <meta name="subject" content="slifit">
-    <!-- <meta name="url" content="https://example.com/"> -->
-    <meta name="directory" content="submission">
-    <meta name="rating" content="General">
-    <meta name="format-detection" content="telephone=no">
-    <meta http-equiv="x-dns-prefetch-control" content="off">
-    <meta http-equiv="Window-Target" content="_value">
-
-    <meta name="theme-color" content="#FFC300">
-
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
-    <title>slifit</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script src="/public/bundle.js"></script>
-  </body>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>slifit</title>
+        <link rel="stylesheet" type="text/css" href="./jquery.fullPage.css"/>
+        <link rel="stylesheet" href="./animate.css">
+        <link rel="stylesheet" href="./index.css">
+        <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic" rel="stylesheet">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>
+        <script type="text/javascript" src="./jquery.fullPage.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $('#fullpage').fullpage();
+            });
+        </script>
+        <script src="./index.js" charset="utf-8"></script>
+    </head>
+    <body>
+        <img src="./slifit.png" class="bounceInLeft" id="logo" alt="">
+        <div id="fullpage">
+            <div class="section page" id="p1">
+                <div id="rul">
+                    <img src="./ruler1.png" id='ruler1' alt="">
+                </div>
+                <div id="rul2">
+                    <img src="./ruler1.png" id='ruler2' alt="">
+                </div>
+                <!-- <img src="./sliper.png" id='sliper' alt=""> -->
+                <div class="text_1">
+                    <h1 class="jello" onclick="v()">slifit</h1>
+                    <h3>사진을 통한 고객 맞춤형 신발 3D 프린팅 시스템</h3>
+                </div>
+            </div>
+            <div id="p3" class="section">
+                <div class="sul_1">
+                    <h1>Slifit은 자신의 발에 꼭 맞는 신발을 만들 수 있는 서비스 입니다.</h1>
+                    <h3>발을 스마트폰으로 촬영후 서버에 업로드만 하면 자신의 발 사이즈를 알 수 있습니다. 또한 자신의 발에 맞는 신발을 3d프린터를 통해 출력할 수 있습니다.</h3>
+                </div>
+                <img src="./process.jpg" alt="" id="pro1" >
+                <img src="./proccess_2.jpg" alt="" id="pro2" class="pro">
+                <img src="./process3.jpg" alt="" id="pro3" class="pro">
+                <img src="./process4.jpg" alt="" id="pro4" class="pro">
+                <img src="./process5.jpg" alt="" id="pro5" class="pro">
+                <h3 id='dis1'>1.자신의 모양을 따라 그린다</h3>
+                <h3 id='dis2'>2.그린 모양을 찍는다</h3>
+                <h3 id='dis3'>3.사진을 서버에 업로드 한다</h3>
+                <h3 id='dis4'>4.자신이 원하는 디자인을 선택한다.</h3>
+            </div>
+            <div id="p2" class="section">
+                    <h2 id=p1_1>세상에 있는 각자의 개성을 가진 수많은 발들이 있습니다.</h2>
+                    <h4 id=p1_2>하지만 세상에는 정형화된 신발사이즈가 대량 생산되어 나에게 딱맞는 신발을 찾기 어렵습니다.<br><br>-넓은 볼<br>-평발<br>-요족<br>-마당발<br>-등등</h4>
+                    <img src="./bigshoes.png" id='angry'alt="">
+                    <h2 id=p1_3>자신에게 맞는 신발</h2>
+                    <h4 id=p1_4>자신에게 맞지 않는 신발을 신었을 때 족저근막염 등의 병을 얻을 수 도 있을 만큼 신발과 우리의 보행습관은 우리에게 매우 중요합니다.</h4>
+            </div>
+            <div id="p3" class="section">
+                <a href="/download/apk">Download</a>
+            </div>
+        </div>
+    </body>
 </html>

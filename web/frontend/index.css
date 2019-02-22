@@ -1,0 +1,266 @@
+html,body{
+    border: 0px;
+    padding: 0px;
+    margin: 0px;
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+}
+body{
+    background-image: url('./foot.png');
+    background-size: 500px;
+}
+.page{
+    width: 100%;
+    height: 100%;
+    overflow-y: hidden;
+    font-family: 'Nanum Gothic', sans-serif;
+}
+
+body, h1, h2, h3, p {
+    font-family: 'Nanum Gothic', sans-serif;
+}
+
+#p1{
+    transition: 1s;
+    background-color: rgba(255,255,255,0);
+    overflow: hidden;
+}
+
+#p3 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+#p3 div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#p3 button, #p3 a {
+    font-size: 3em;
+    border: none;
+    border-radius: 0px;
+    display: inline-block;
+    height: 40px;
+    line-height: 40px;
+    padding: 0 2rem;
+    text-transform: uppercase;
+    vertical-align: middle;
+    -webkit-tap-highlight-color: transparent;
+    text-decoration: none;
+    color: #fff;
+    background-color: #50e3c2;
+    text-align: center;
+    letter-spacing: .5px;
+    transition: .2s ease-out;
+    cursor: pointer;
+    border-radius: 0;
+    padding: 0 20px;
+    color: #000;
+    background: #32caaf;
+    width: 250px;
+    height: 50px;
+    line-height: 50px;
+    border-radius: 25px;
+    background-color: #09cda1;
+    box-shadow: 0 5px 10px 0 rgba(43,187,155,0.3);
+    color: #fff;
+    font-size: 14px;
+    font-weight: 700;
+    font-style: normal;
+    font-stretch: normal;
+    letter-spacing: 1px;
+    text-align: center;
+}
+
+#logo{
+    z-index: 3;
+    position: fixed;
+    top:10%;
+    left: 2%;
+    width: 900px;
+    transition: 1s;
+}
+#rul{
+    position: absolute;
+    left: 13%;
+    top:52%;
+    display: none;
+}
+#ruler1{
+    transform: rotate(17deg) scale(2);
+}
+
+#ruler2{
+    transform: rotate(287deg) scale(2);
+}
+#rul2{
+    position: absolute;
+    left: 40%;
+    top:-10%;
+    display: none;
+}
+#sliper{
+    position: relative;
+    opacity: 0;
+    top: 7%;
+    left: 20%;
+    transition: 1s;
+    z-index: 2;
+}
+#p1 h1{
+    text-align: center;
+    position: relative;
+    top:30%;
+    font-size: 200px;
+    font-style: bold;
+    margin: 20px;
+}
+#p1 h3{
+    text-align: center;
+    font-size: 30px;
+    font-style: bold;
+    opacity: 0.5;
+}
+.text_1{
+    position: relative;
+    top:0%;
+    transition: 1s;
+    opacity: 0;
+}
+#p2{
+    text-align: center;
+    position: relative;
+    background-color: rgba(255,255,255,0.6);
+}
+.text_2 h2{
+    text-align: center;
+    font-size: 30px;
+}
+.text_2{
+    position: relative;
+    top: 40px;
+    text-align: center;
+}
+#p3{
+    background-color: rgba(255,255,255,0.7);
+}
+#p3 h1{
+    font-size: 26px;
+    text-align: left;
+}
+#p3 h3{
+    text-align: left;
+    color: grey;
+    font-style: normal;
+}
+.sul_1{
+    text-align: center;
+    position: relative;
+    width:400px;
+    left: 25%;
+    top: -25%;
+}
+#pro1{
+    position: absolute;
+    left: 50%;
+    top:15%;
+}
+
+
+#pro2{
+    position: absolute;
+    left: 20%;
+    top:45%;
+}
+#dis1{
+    position: absolute;
+    left: 19%;
+    top:77%;
+}
+
+#pro3{
+    position: absolute;
+    left: 37%;
+    top:45%;
+    height: 300px;
+}
+#dis2{
+    position: absolute;
+    left: 36%;
+    top:77%;
+    height: 300px;
+}
+#pro4{
+    position: absolute;
+    left: 54%;
+    top:45%;
+    height: 300px;
+}
+#dis3{
+    position: absolute;
+    left: 52%;
+    top:77%;
+    height: 300px;
+}
+#pro5{
+    position: absolute;
+    left: 71%;
+    top:45%;
+    height: 300px;
+}
+#dis4{
+    position: absolute;
+    left: 68%;
+    top:77%;
+    height: 300px;
+}
+.pro{
+    transition: 0.5s;
+}
+.pro:hover{
+    transform: scale(1.2);
+}
+
+#p1_1{
+    position: absolute;
+    width: 400px;
+    text-align: left;
+    left: 13%;
+    top:30%;
+}
+#p1_2{
+    position: absolute;
+    width: 400px;
+    text-align: left;
+    left: 13%;
+    top:38%;
+    font-size: 20px;
+    color: grey;
+}
+#p1_3{
+    position: absolute;
+    width: 400px;
+    text-align: left;
+    left: 65%;
+    top:30%;
+}
+#p1_4{
+    position: absolute;
+    width: 400px;
+    text-align: left;
+    left: 65%;
+    top:38%;
+    font-size: 20px;
+    color: grey;
+}
+#angry{
+    position: absolute;
+    width: 500px;
+    top:30%;
+    left: 36%;
+}
