@@ -4,10 +4,10 @@ const multer = require('multer')
 const express = require('express')
 const app = express()
 
-app.use(express.static(path.resolve(__dirname, '../frontend/')))
+app.use(express.static(path.resolve(__dirname, './frontend/')))
 
 app.get('/', (req, res) => {
-    res.sendFile(path.resolve(__dirname, '../frontend/index.html'))
+    res.sendFile(path.resolve(__dirname, './frontend/index.html'))
 })
 
 app.get('/download/apk', (req, res) => {
